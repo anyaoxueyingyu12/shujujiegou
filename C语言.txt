@@ -1,0 +1,1365 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int a[]={1,2,3,4,5,6,7,8,9,10};
+    int i=0;
+    scanf("%d",&i);
+    int right=sizeof(a)/sizeof(a[0])-1;
+    int left=0;
+    int mid=(left+right)/2;
+    while(left<=right) {
+//        int mid=(left+right)/2;
+        if (i < a[mid]) {
+            right = mid - 1;
+        } else if (i > a[mid]) {
+            left = mid + 1;
+        } else {
+            printf("%d", a[mid]);
+            break;
+        }
+    }
+    if(left>right){
+        printf("error\n");
+    }
+    return 0;
+}
+为什么失败     mid的值会改变要在循环内
+#include<stdio.h>
+int main() {
+    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int i = 7;
+    int c=sizeof(a) / sizeof(a[0]);   //数组长度
+    int right = c - 1;   //右下标
+    int left = 0;    //左下标
+ // int mid=(left+right)/2;中间值会随着范围的缩小改变
+    while (left <= right) {
+        int mid=(left+right)/2;
+        if (i < a[mid]) {
+            right = mid - 1;
+        } else if (i > a[mid]) {
+            left = mid + 1;
+        } else {
+            printf("%d", mid);
+            break;
+        }
+    }
+    if (left > right) {
+        printf("error\n");
+    }
+    return 0;
+}
+成功案例
+------------------------------------
+#include<windows.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main() {
+    //hallo world !!!!
+    //##### ##### ####
+    char arr1[20]="hello world !!!!";
+    char arr2[20]="##### ##### ####";
+    int left=0;
+    int c=strlen(arr1);
+    int right=c-1;
+    while(left<=right){
+        arr2[left]=arr1[left];
+        arr2[right]=arr1[right];
+        left++;
+        right--;
+        printf("%s\n",arr2);
+        Sleep(1000);
+        system("cls");
+    }
+    printf("%s\n",arr2);
+    return 0;
+}
+----------------------------------------
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char passport[20]="0";
+//    scanf("%s",passport);
+    int i=0;
+    for(i=0;i<3;i++){
+        scanf("%s",passport);
+        if(strcmp(passport,"123456")==0){
+
+  printf("success\n");
+            break;
+        }else{
+            printf("error\n");
+//            break;
+
+        }
+    }
+    if(i==3) {
+        printf("bai bai\n");
+    }
+    return 0;
+}
+密码问题
+------------------------------------------
+#include<stdio.h>
+int main(){
+    int a;
+    int b;
+    int c;
+    scanf("%d%d%d",&a,&b,&c);
+    if(a<b){
+        int tmp=a;
+        a=b;
+        b=tmp;
+    }
+    if(a<c){
+        int tmp=a;
+        a=c;
+        c=tmp;
+    }
+    if(b<c){
+        int tmp=b;
+        b=c;
+        c=tmp;
+    }
+    printf("%d%d%d\n",a,b,c);
+    return 0;
+}
+三个数比大小
+输入需要注意间隔空行
+-------------------------------------
+#include<stdio.h>
+int main() {
+    int i = 0;
+//    int sum=0;
+    for (i = 1; i <= 100; i++) {
+        int sum = 0;
+        if (i % 3 == 0) {
+            printf("%d\n", i);
+//            sum=sum+1;
+        }
+       
+    }
+//    printf("%d",sum);
+    return 0;
+}
+sum 有问题，为什么算不出来值
+--------------------------------------
+---------------------------------------
+#include<stdio.h>     //辗转相除法
+int main() {
+    int a;
+    int b;
+    int r=0;
+    scanf("%d%d",&a,&b);
+    while(a%b) {
+        r = a % b;
+        b = a;
+        b = r;
+    }
+    printf("%d",r);
+    return 0;
+}
+最大公约数
+---------------------------------------
+--------------------------------------
+#include<stdio.h>
+int main() {
+   int year=0;
+   int sum=0;
+   for(year=1000;year<=2000;year++){
+       if(year%4==0&&year%100!=0){
+           printf("%d\n",year);
+           sum++;
+       }else if(year%400==0){
+           printf("%d",year);
+
+       }
+
+   }
+   printf("\n%d",sum);
+   return 0;
+}
+//if((year%4==0)&&(year%100!=0)||(yrar%400==0))
+闰年
+---------------------------------------------------
+-----------------------------------------------------
+#include<stdio.h>
+int main() {
+    int i=0;
+    int sum=0;
+    for(i=100;i<=200;i++){
+    //试除法
+        int j=0;
+        for(j=2;j<=i-1;j++){
+            if(i%j==0){
+                break;
+            }
+        }
+        if(i==j){
+            printf("%d",i);
+            sum++;
+        }
+//        printf("%d",sum);
+    }
+    printf("%d",sum);
+
+   return 0;
+}
+素数
+--------------------------------------
+#include<stdio.h>
+#include<math.h>
+int main() {
+    int i=0;
+    int sum=0;
+    for(i=100;i<=200;i++){
+        int j=0;
+        for(j=2;j<=sqrt(i);j++){    //库函数，用来计算开平方
+            if(i%j==0){
+                break;
+            }
+        }
+        if(j>sqrt(i)){
+            printf("%d\n",i);
+            sum++;
+        }
+//        printf("%d",sum);
+    }
+    printf("%d",sum);
+
+   return 0;
+}
+素数2.0
+-------------------------------------------
+#include<stdio.h>
+#include<math.h>
+int main() {
+    int i=0;
+    int sum=0;
+    for(i=101;i<=200;i+=2){    /取出偶数提高效率
+        int j=0;
+        for(j=2;j<=sqrt(i);j++){    //库函数，用来计算开平方
+            if(i%j==0){
+                break;
+            }
+        }
+        if(j>sqrt(i)){
+            printf("%d\n",i);
+            sum++;
+        }
+//        printf("%d",sum);
+    }
+    printf("%d",sum);
+
+   return 0;
+}
+素数3.0    
+《素数求解的N种办法》---有关素数的问题
+==============================================
+------------------------------------------------
+#include<stdio.h>
+int main() {
+    int i=0;
+    int sum=0;
+    for(i=1;i<=100;i++){
+       if(i%10==9){
+           printf("%d\n",i);
+           sum++;
+       }     //并列把99也算上
+       if(i/10==9){
+           printf("%d\n",i);
+           sum++;
+       }
+    }
+    printf("sum=%d\n",sum);
+   return 0;
+}
+计算9出现的次数
+-----------------------------------------
+-----------------------------------------
+#include<stdio.h>
+int main() {
+    int i=0;
+    for(i=1;i<=9;i++){
+        int j=1;
+        for(j=1;j<=i;j++){
+            int sum=j*i;
+            printf(" %d*%d=%-2d",j,i,sum);
+        }
+        printf("\n");
+    }
+//    printf("%d",sum)
+    return 0;
+}
+9*9乘法表
+---------------------------------------------
+-------------------------------------------------
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+void menu() {
+    printf("############################\n");
+    printf("#######1.play   0.exit######\n");
+    printf("############################\n");
+}
+void game(){
+    //1.生成随机数
+    //2.猜随机数
+    //用时间戳来设置随机数的生成起始点
+    //time_t time(time_t*timer)
+    // time_t;
+    int ret=0;
+    int number=0;
+    ret= rand()%100+1;             //生成随机数；
+//    printf("%d\n",ret);
+    while(1){
+        printf("shu ru shu zhi\n");
+        scanf("%d",&number);
+        if(number<ret){
+            printf("little\n");
+
+        }else if(number>ret){
+            printf("bigger\n");
+        }else{
+            printf("good\n");
+            break;
+        }
+    }
+}
+int main() {
+    int put=0;
+    srand(( unsigned int) time(NULL));
+    do{
+        menu();   //菜单选择1进入游戏 0退出游戏；
+        printf("change");
+        scanf("%d",&put);
+        switch(put){
+            case 1:
+                game();   //游戏入口
+                break;
+            case 0:
+                printf("bai bai\n");
+                break;
+            default:
+                printf("bai bai\n");
+        }
+    }while(put);
+    return 0;
+}
+
+
+随机数生成
+-----------------------------------------------
+-----------------------------------------------
+#include<stdio.h>
+int my_strlen(char*str){
+    if(*str!='\0'){        //*str用来确定首个子母
+        return 1+my_strlen(str+1);
+    }
+    return 0;
+}
+int main(){
+    int len=0;
+    char arr[]="bit";
+    len=my_strlen(arr);   //数组传地的是首字母的地址，长度传不过去
+    printf("%d",len);
+    return 0;
+}
+模拟计算字符串长度
+-------------------------------------------------
+-----------------------------------------------------
+#include<stdio.h>
+int fac2(int t){
+    if(t<=1)
+        return 1;
+    return t*fac2(t-1);
+}
+int main(){
+    int n=0;
+    int ret=0;
+    scanf("%d",&n);
+    ret=fac2(n);
+    printf("%d",ret);
+    return 0;
+}
+递归算N的阶乘
+------------------------------------------------------------------
+-----------------------------------------------------------------
+#include<stdio.h>
+int fib (int t){
+//    if(t<=2)
+//        return 1;
+//    return fib(t-1)+fib(t-2)
+    int a=1;
+    int b=1;
+    int c=1;
+    while(t>2) {
+        c = a + b;
+        a = b;
+        b = c;
+        t--;    //忘了t自减
+    }
+    return c;   //不要忘了返回值！
+}
+int main(){
+    int n=0;
+    int ret=0;
+    scanf("%d",&n);
+    ret=fib(n);
+    printf("%d",ret);
+    return 0;
+
+}
+迭代算法
+--------------------------------------------------
+----------------------------------------------------
+#include<stdio.h>
+void bobble_sort(int arr[],int len){    //返回无定义函数只排序就行
+    //总共有多少趟冒泡排序
+    int j=0;
+    for(j=0;j<=len;j++){
+        //一趟需要几次对比排序9，8，7············
+        int t=0;
+        for(t=0;t<=len-j;t++){
+            if(arr[t]>arr[t+1]){
+                int temp=arr[t];   |
+                arr[t]=arr[t+1];   | //交换值不要忘了！！！！！！！！！
+                arr[t+1]=temp;     |
+            }
+        }
+    }
+}
+int main(){
+    int arr[]={9,8,7,6,5,4,3,2,1,0};
+    int len=sizeof(arr)/sizeof(arr[0])-1;
+    bobble_sort(arr,len);
+    int i=0;
+    for(i=0;i<=len;i++){
+        printf("%d",arr[i]);
+    }
+    return 0;
+}
+冒泡排序   时间复杂度为n的二次方
+冒泡排序法，最坏情况为(n-1)+(n-2)+……+1=n(n-1)/2   所以复杂度是N^2 
+----------------------------------------------------------
+-----------------------------------------------------------
+#include<stdio.h>
+void bobble_sort(int arr[],int len){
+    //总共有多少趟冒泡排序
+    int j=0;
+    for(j=0;j<=len;j++){
+        //一趟需要几次对比排序9，8，7············
+        int flag=1;
+        int t=0;
+        for(t=0;t<=len-j;t++){
+            if(arr[t]>arr[t+1]){
+                int temp=arr[t];
+                arr[t]=arr[t+1];
+                arr[t+1]=temp;
+                flag=0;
+            }
+        }
+        if(1==flag)       //如果第一趟就已经排好，这时FLAG已经被赋值为1，和循环里的0相冲突直接到这个条件语句，退出循环
+            break;
+    }
+}
+int main(){
+    int arr[]={9,0,1,2,3,4,5,6,7,8};
+    int len=sizeof(arr)/sizeof(arr[0])-1;
+    bobble_sort(arr,len);
+    int i=0;
+    for(i=0;i<=len;i++){
+        printf("%d",arr[i]);
+    }
+    return 0;
+}
+优化冒泡排序
+------------------------------------------------------------------
+---------------------------------------------------------------------
+game.c
+
+#include"game.h"
+void InitBoard(char board[ROW][COL],int row,int col){
+    int i=0;
+    int j=0;
+    for(i=0;i<row;i++){
+        for(j=0;j<col;j++){
+            board[i][j]=" ";
+        }
+    }
+}
+void DisplayBoard(char board[ROW][COL],int row,int col) {
+    int i = 0;
+//    int j=0;
+    for (i = 0; i < row; i++) {
+        int j = 0;
+//        printf(" %c | %c | %c \n",board[i][0],board[i][1],board[i][2]);
+        for (j = 0; j < col; j++) {
+            //打印一行的数据
+            printf(" %c  ", board[i][j]);
+            if (j < col - 1) {
+                printf("|");
+            }
+        }
+        printf("\n");
+            //打印分割行
+        if (i < row - 1) {
+//                printf("---|---|---\n");
+            for (j = 0; j < col; j++) {
+                printf("---");
+                if (j < col - 1) {
+                    printf("|");
+                }
+//                    printf("\n");
+            }
+        printf("\n");
+       }
+//        //打印分割行
+//        if(i<row-1)
+//            printf("---|---|---\n");
+    }
+}
+自己写的
+
+#include"game.h"
+void InitBoard(char board[ROW][COL],int row,int col){
+    int i=0;
+    int j=0;
+    for(i=0;i<row;i++){
+        for(j=0;j<col;j++){
+            board[i][j]=" ";
+        }
+    }
+}
+void DisplayBoard(char board[ROW][COL],int row,int col) {
+    int i = 0;
+//    int j=0;
+    for (i = 0; i < row; i++) {
+        int j = 0;
+//        printf(" %c | %c | %c \n",board[i][0],board[i][1],board[i][2]);
+        for (j = 0; j < col; j++) {
+            //打印一行的数据
+            printf(" %c  ", board[i][j]);
+            if (j < col - 1) {
+                printf("|");
+            }
+        }
+        printf("\n");
+            //打印分割行
+        if (i < row - 1) {
+//                printf("---|---|---\n");
+            for (j = 0; j < col; j++) {
+                printf("---");
+                if (j < col - 1) {
+                    printf("|");
+                }
+//                    printf("\n");
+            }
+        printf("\n");
+       }
+//        //打印分割行
+//        if(i<row-1)
+//            printf("---|---|---\n");
+    }
+}
+main文件
+
+//#include<stdio.h>
+#include"game.h"
+//#include"game.h"
+void menu(){
+    printf("##############################\n");
+    printf("######i,play   0,over#########\n");
+    printf("##############################\n");
+}
+//游戏的整个算法实现
+void game() {
+    //数组-存放棋盘走出的信息
+    char board[ROW][COL] = {0};  //全部空格
+    InitBoard(board, ROW, COL);  //初始化棋盘
+    DisplayBoard(board,ROW,COL); //打印棋盘
+
+}
+void test() {
+    int i = 0;
+//    menu();
+    do {
+        menu();
+        scanf("%d", &i);
+        switch (i) {
+            case 1:
+                game();
+                break;
+            case 0:
+                printf("bai bai");
+                break;
+            default:
+                printf("again\n");
+                break;
+        }
+    } while (i);
+
+}
+
+int main() {
+    test();
+    return 0;
+}
+头文件
+#include<stdio.h>
+#endif //FUNCTION_C_GAME_H
+#define COL 3
+#define ROW 3
+//声明
+void InitBoard(char board[ROW][COL],int row,int col);
+void DisplayBoard(char board[ROW][COL],int row,int rol);
+
+==============================================================
+-------------------------------------------------------------
+
+void InitBoard(char arr[ROW][COL],int row,int col){
+    int i=0;
+    for(i=0;i<row;i++){
+        int j=0;
+        for(j=0;j<col;j++){
+            arr[i][j]=' ';
+        }
+    }
+}
+//打印棋盘-先以行为标准定好整个框架——即以行为基础限制
+void DisplayBoard(char arr[ROW][COL],int row,int col){
+    int i=0;
+    //打印行----整体以行为框架所有的操作都在这里进行。
+    for(i=0;i<row;i++){     //第一行的开始  for循环一起--所以是数字和棋盘一起打印
+        int j=0;
+        for(j=0;j<col;j++){            //第一行第一列
+            printf(" %c ",arr[i][j]);  //打印出 数字|数字|数字
+            if(j<col-1)
+                printf("|");        //最后一列不打印|
+        }
+        printf("\n");
+        //打印分割线---上下之间是平行关系并不是所属关系因此IF和上面的for是平行的，即先打印出  ---|---|---再打印出  数字|数字|数字
+        if(i<row-1) {     //最后一行不打印———
+            for (j = 0; j < col;j++) {    //打印出---|---|---
+                printf("---");
+                if (j< col - 1)          //限制多打印出| 在最后一行
+                    printf("|");
+            }                                               //  |     数字|数字|数字
+            printf("\n");      //I=0时  0.0 0.1 0.2 这些打印完毕   |     ---|---|---  接着根据循环打印出其他的棋盘
+        }
+    }
+}
+void PlayerMove(char board[ROW][COL],int row,int col){
+    int x=0;
+    int y=0;
+    printf("player go\n");
+    while(1){
+        printf("please chance yours x and y \n");
+        scanf("%d%d",&x,&y);
+        if(x>=1&&x<=ROW&&y>=1&&y<=COL){
+            if(board[x-1][y-1]=' '){        //为了更好的用户体验 空格用‘ ’  用 “ ”会出现？
+                board[x-1][y-1]='#';
+                break;
+            }else{
+                printf("please sit others\n");
+            }
+        }else{
+            printf("lose\n");
+        }
+    }
+}
+void ComputerMove(char board[ROW][COL],int row,int col){
+    int x=0;
+    int y=0;
+    printf("computer move\n");
+    while(1){
+        x=rand() % row;
+        y=rand() % col;
+        if(board[x][y]==' '){
+            board[x][y]='*';
+            break;
+        }
+    }
+}
+//1为平局
+//0为继续下
+int IsFull(char board[ROW][COL],int row,int col){
+    int i=0;
+    int j=0;
+    for(i=0;i<row;i++){
+        for(j=0;j<col;j++){
+            if(board[i][j]==' '){
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+char IsWin(char board[ROW][COL],int row,int col){
+    int i=0;
+    //横行
+    for(i=0;i<row;i++){
+        if(board[i][0]==board[i][1]&&board[i][1]==board[i][2]&&board[i][2]!=' '){
+            return board[i][0];
+        }
+    }
+    //束列
+    for(i=0;i<col;i++){
+        if(board[0][i]==board[1][i]&&board[1][i]==board[2][i]&&board[2][i]!=' '){
+            return board[0][i];
+        }
+    }
+    //对角线
+    if(board[0][0]==board[1][1]&&board[1][1]==board[2][2]&&board[2][2]!=' '){
+        return board[0][0];
+    }
+    if(board[0][2]==board[1][1]&&board[1][1]==board[2][0]&&board[2][0]!=' '){
+        return board[0][2];
+    }
+    if(1==IsFull(board,ROW,COL)){
+        return 'T';
+    }
+    return 'C';
+
+}
+-------------------------------------------------------------------------
+
+//#include<stdio.h>
+#include"game.h"
+//#include"game.h"
+void menu(){
+    printf("##############################\n");
+    printf("######i,play   0,over#########\n");
+    printf("##############################\n");
+}
+//游戏的整个算法实现-1.用数组存放棋盘走的信息2.初始化棋盘3.打印棋盘
+void game() {
+    char ret=0;
+//    srand((unsigned int)time(NULL));
+    //数组-存放棋盘走出的信息
+    char board[ROW][COL] = {0};  //全部空格
+    InitBoard(board, ROW, COL);  //初始化棋盘
+    DisplayBoard(board,ROW,COL); //打印棋盘
+    while(1){
+        PlayerMove(board,ROW,COL);  //玩家走
+        DisplayBoard(board,ROW,COL); //打印棋盘
+        ret=IsWin(board,ROW,COL);  //判断输赢
+        if(ret!='c'){
+            break;
+        }
+        ComputerMove(board,ROW,COL);
+        DisplayBoard(board,ROW,COL); //打印棋盘
+        ret=IsWin(board,ROW,COL);  //判断输赢
+        if(ret!='c'){
+            break;
+        }
+    }
+//    ret=IsWin(board,ROW,COL);  //判断输赢
+    if(ret=='#'){
+        printf("gamer win\n");
+    }else if(ret=='*'){
+        printf("computer win\n");
+    }else{
+        printf("this is double winner\n");
+    }
+}
+void test() {
+
+    srand((unsigned int)time(NULL));
+    int i = 0;
+//    menu();
+    do {
+        menu();
+        scanf("%d", &i);
+        switch (i) {
+            case 1:
+                game();
+                break;
+            case 0:
+                printf("bai bai");
+                break;
+            default:
+                printf("again\n");
+                break;
+        }
+    } while (i);
+
+}
+
+int main() {
+    test();
+    return 0;
+}
+
+-----------------------------------------------------------
+
+#ifndef FUNCTION_C_GAME_H
+#define FUNCTION_C_GAME_H
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#endif //FUNCTION_C_GAME_H
+#define COL 3
+#define ROW 3
+//声明
+void InitBoard(char board[ROW][COL],int row,int col);
+void DisplayBoard(char board[ROW][COL],int row,int col);
+void PlayerMove(char board[ROW][COL],int row,int col);
+void ComputerMove(char board[ROW][COL],int row,int col);
+char IsWin(char board[ROW][COL],int row,int col);
+
+//玩家赢返回“#”
+
+
+以上代码有问题，下一次就是平局
+====================================================================
+
+--------------------------------------------------------------------
+
+
+
+
+void SetBoard(char board[ROWS][COLS],int row,int col){
+    int count= easy_set;
+    while(count){
+        int i=0;
+        int j=0;
+        for(i=1;i<=row;i++){
+            for(j=1;j<=row;j++){
+                if(board[i][j]=='*'){
+                    board[i][j]='1';
+                }
+            }
+        }
+    }
+}
+
+有点问题---炸雷
+--------------------------------------------------------------------
+===================================================================================
+===================================================================================
+====================================================================================
+
+#include"game.h"
+void menu(){
+    printf("###################################\n");
+    printf("##########  1,play  ###############\n");
+    printf("##########  0,exit  ###############\n");
+    printf("###################################\n");
+}
+//算法实现
+void game(){
+    //设置雷点
+    char board[ROWS][COLS]={0};   //布置好雷的信息
+    char type[ROWS][COLS]={0};    //排查好雷的信息
+    InitBoard(board,ROWS,COLS,'0');   //初始化棋盘
+    DisplayBoard(board,ROW,COL);      //打印棋盘
+    InitBoard(type,ROWS,COLS,'*');
+//    DisplayBoard(type,ROW,COL);      //打印棋盘
+    //设置雷
+    SetBoard(board,ROW,COL);
+    DisplayBoard(board,ROW,COL);      //打印棋盘
+  //排雷
+    FindBoard(board,type,ROW,COL);
+}
+
+void test(){
+    int input=0;
+    srand((unsigned int)time(NULL));
+    do{
+        menu();
+        printf("change your number\n");
+        scanf("%d",&input);
+        switch(input){
+            case 1:
+                game();
+                break;
+            case 0:
+                printf("bai bai\n");
+                break;
+            default:
+                break;
+        }
+    }while(input);
+}
+int main(){
+    test();
+    return 0;
+
+}
+
+//
+// Created by 聂聂聂 on 2023/7/18.
+//
+#include"game.h"
+void InitBoard(char board[ROWS][COLS],int row,int col,char set){
+    int i=0;
+    int j=0;
+    for(i=0;i<=col;i++) {         //把第一行变成的每列都初始化
+        for(j=0;j<row;j++){
+            board[i][j]=set;
+        }
+    }
+}
+
+void DisplayBoard(char board[ROWS][COLS],int row,int col){
+    int i=0;
+    int j=0;
+    for(j=0;j<=col;j++){
+        printf("%d  ",j);      //打印列号
+    }
+    printf("\n");
+    for(i=1;i<=row;i++){
+        printf("%d  ",i);
+        for(j=1;j<=col;j++){
+            printf("%c  ",board[i][j]);
+        }
+        printf("\n");
+    }
+}
+void SetBoard(char board[ROWS][COLS],int row,int col){
+    int count= easy_set;
+    while(count) {
+        int x = rand() % row + 1;  //1~8加一
+        int y = rand() % col + 1;  //1~8加一
+        if (board[x][y]=='0'){
+            board[x][y]='1';
+            count--;
+        }
+    }
+}
+//'1'-'0'=1
+//'0'-'0'=0  字符减去字符0等于数字
+int get_board_count(char board[ROWS][COLS],int x,int y){
+    int ret=board[x][y-1]+board[x-1][y-1]+board[x-1][y]+board[x-1][y+1]+
+    board[x][y+1]+board[x+1][y+1]+board[x+1][y]+board[x+1][y-1]-8*'0';
+    return ret;
+
+}
+void FindBoard(char board[ROWS][COLS],char type[ROWS][COLS],int row,int col){
+    int x=0;
+    int y=0;
+    int win=0;
+    while(win<row*col-easy_set){
+        printf("set your number\n");  //输入排雷的坐标
+        scanf("%d%d",&x,&y);
+        if(x>=1&&x<=row&&y>=1&&y<=col){
+            if(board[x][y]=='1'){                //踩雷
+                printf("this is boom\n");
+                DisplayBoard(board,ROW,COL);
+                break;
+            }else{     //不是雷
+                int temp=get_board_count(board,x,y);
+                type[x][y]=temp+'0';
+                DisplayBoard(type,row,col);  //计算X Y周围有几个雷
+            }
+        }
+        printf("please write again\n");
+    }
+    if(win==row*col-easy_set){
+        printf("congratulation !");
+        DisplayBoard(board,row,col);   //打印出来棋盘看看雷
+    }
+}
+
+//递归  1.坐标不是雷
+//     2.该坐标周围也不是雷
+
+
+
+==========================================================================
+==========================================================================
+#include <stdio.h>
+void print(int a[],int j){
+    int left=0;
+    int right=j-1;
+    while(left<right) {
+        int temp = a[left];
+        a[left] = a[right];
+        a[right]=temp;
+        left++;
+        right--;
+        }
+        for(int i=0;i<j;i++){
+            printf("%d ",a[i]);
+    }  //老师的方法
+
+//    int t = 0;
+//    for(t=j-1;t>=0;t--){
+//        printf("%d ",a[t]);    //自己写的
+//    }
+}
+int main() {
+    int a[10]={1,2,3,4,5,6,7,8,9,10};
+    print(a,10);
+
+    return 0;
+}
+原地倒置
+
+
+#include <stdio.h>
+void print(int a[],int j){
+
+
+    int t = 0;
+    for(t=j-1;t>=0;t--){
+        printf("%d ",a[t]);
+    }
+}
+int main() {
+    int a[10]={1,2,3,4,5,6,7,8,9,10};
+    int len=sizeof(a)/sizeof(a[0]);
+    print(a,len);
+
+    return 0;
+}
+原地倒置
+-------------------------------------------------------------
+---------------------------------------------------------------
+================================================================
+#include <stdio.h>
+
+int main() {
+    int a[]={1,2,5,9};
+    int b[]={2,4,8,3};
+    int len=sizeof(a)/sizeof(a[0]);
+    int temp=0;
+    int i=0;
+    for(i=0;i<len;i++){
+        temp=a[i];
+        a[i]=b[i];
+        b[i]=temp;
+        printf("%d ",b[i]);
+    }老师讲的
+
+//    int b[10]={1,5,6,7,9,10,11,12,13,14};
+//    int temp=0;
+//    int a1[]= {0};
+//    int i=0;
+//    for(i=0;i<10;i++){
+//        a1[temp]=b[i];
+//        b[i]=a[i];
+//        a[i]=a1[temp];
+//        printf("%d ",a[i]);
+//        printf("%d ",b[i]);
+//    }自己写的
+    return 0;
+}
+交换两个数组的内容
+========================================================
+========================================================
+#include<stdio.h>
+int count_number(int a){
+    int sum=0;
+    while(a){
+        if(a%2==1){               //  13的二进制为1101
+            sum++;                //除以二可以得到1101
+        }
+        a=a/2;                   //磨以二可以的得到13 6 3 1 0
+    }
+    return sum;
+}
+int main(){
+    int a=0;
+    scanf("%d",&a);  //写一个函数计算a二进制（补码）中有几个1
+    //13
+    //000000000000000000001101
+    int count=count_number(a);
+    printf("%d",count);
+    return 0;
+}计算一个数二进制（补码）中1的个数
+
+#include<stdio.h>
+#include<stdlib.h>
+int count_number(int a){
+    int sum=0;
+    while(a){
+        if(a%2==1){
+            sum++;
+        }
+        a=a/2;
+    }
+    return sum;
+}
+int main(){
+    int a=0;
+    scanf("%d",&a);  //写一个函数计算a二进制（补码）中有几个1
+    //13
+    //000000000000000000001101
+    int count=count_number(a);
+    system("pause");  //system库函数---执行系统命令--pause暂停
+    printf("%d",count);
+    return 0;
+}有暂停功能的函数代码
+
+#include<stdio.h>
+#include<stdlib.h>
+int count_number(unsigned int a){
+    int sum=0;
+    while(a){
+        if(a%2==1){
+            sum++;
+        }
+        a=a/2;
+    }
+    return sum;
+}
+int main(){
+    int a=0;
+    scanf("%d",&a);  //写一个函数计算a二进制（补码）中有几个1
+    //13
+    //000000000000000000001101
+    int count=count_number(a);
+    system("pause");  //system库函数---执行系统命令--pause暂停
+    printf("%d",count);
+    return 0;
+}这个可以计算副数的二进制比较全面
+
+#include<stdio.h>
+#include<stdlib.h>
+int count_number(unsigned int a){
+    int i=0;
+    int sum=0;
+    for(i=0;i<32;i++){
+        if(((a>>i)&1)==1){
+            sum++;
+        }
+    }
+    return sum;
+}
+int main(){
+    int a=0;
+    scanf("%d",&a);  //写一个函数计算a二进制（补码）中有几个1
+    //13
+    //000000000000000000001101
+    int count=count_number(a);
+    system("pause");  //system库函数---执行系统命令--pause暂停
+    printf("%d",count);
+    return 0;
+}进制操作计算1的次数
+------------------------------------------------------------
+===============================================================
+#include<stdio.h>
+void print(int a[],int len){
+    int i=0;
+    for(i=0;i<len;i++){
+        printf("%d ",a[i]);
+    }
+}
+int main(){
+    int a[]={0,5,4,6,7,8};
+    int len=sizeof(a)/sizeof(a[0]);
+    print(a,len);
+    return 0;
+}第一种方式
+------------------------------------------
+==========================================
+#include<stdio.h>
+void print(int *p,int len){
+    int i=0;
+    for(i=0;i<len;i++){
+        printf("%d ",*(p+i));
+    }
+}
+int main(){
+    int a[]={0,5,4,6,7,8};
+    int len=sizeof(a)/sizeof(a[0]);
+    print(a,len);
+    return 0;
+}
+第二种方式
+=================================================
+=================================================
+#include<stdio.h>
+#include<string.h>
+void reverse_string(char arr[]){
+    int left=0;
+    int right=strlen(arr)-1;
+    while(left<right){
+        int temp=arr[left];
+        arr[left]=arr[right];
+        arr[right]=temp;
+        left++;
+        right--;
+    }
+}
+int main(){
+    char arr[]="abcdef";
+    reverse_string(arr);
+    printf("%s",arr);
+    return 0;
+}用库函数实现字符串的反转
+--------------------------------------------------------
+#include<stdio.h>
+#include<string.h>
+int my_strlen(char* ar){    //计算字符串的长度
+    int count=0;
+   while(*ar!='\0'){    //换成IF倒置失败 因为只运行了一次，然后COUNT被赋于1，接下来的运算级失败了
+        ar++;
+        count++;
+    }
+    return count;
+}
+void reverse_string(char arr[]){
+    int temp=arr[0];
+    int len =my_strlen(arr);
+    arr[0]=arr[len-1];
+    arr[len-1]='\0';
+    if(my_strlen(arr+1)>=2){
+        reverse_string(arr+1);
+    }
+    arr[len-1]=temp;
+}
+//    int left=0;
+//    int right=my_strlen(arr)-1;
+//    while(left<right){
+//        int temp=arr[left];
+//        arr[left]=arr[right];
+//        arr[right]=temp;
+//        left++;
+//        right--;
+//    }
+//}
+int main(){
+    char arr[]="abcdef";
+    reverse_string(arr);
+    printf("%s",arr);
+    return 0;
+}递归实现函数的倒置
+--------------------------------------------------
+=================================================
+#include<stdio.h>
+int DigitSum(int a){
+    if(a>9){
+        return DigitSum(a/10)+a%10;
+    }
+    return a;
+}
+int main(){
+    int i=0;
+    scanf("%d",&i);
+    int ret=DigitSum(i);
+    printf("%d",ret);
+    return 0;
+}计算一个数各项的和（递归算法）
+=============================================================
+---------------------------------------------------------------
+#include<stdio.h>
+double Pow(int n, int k){
+    if(k<0){
+        return (1.0/Pow(n,-k));
+    }else if(k==0)
+        return 1;
+    return n*Pow(n,k-1);
+}
+int main(){
+    int n=0;
+    int k=0;
+    scanf("%d%d",&n,&k);
+    double ret=Pow(n,k);
+    printf("%lf",ret);
+    return 0;
+}递归算出n的K次方
+==============================================
+#include <stdio.h>
+
+int main() {
+    int* p;  //未初始化
+    *p=20;  //不能这样写
+    printf("%d",*p);
+//    int*q;
+//    int a[5];
+//    p=&a[4];
+//    q=&a[1];
+//    printf("%d",p-q);
+    return 0;
+
+}
+===================================================
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+typedef struct node{
+	int data;  //数据域
+	struct node* pNext;  //指针域 
+}Node,*pNode;
+pNode creat_node(){
+	pNode pHead=(pNode)malloc(sizeof(Node));  //创建头节点
+	if(NULL==pHead){   //判空 
+		printf("failed\n");
+		exit(-1);
+	}
+	pNode pTail=pHead;
+	pTail->pNext=NULL;
+	int i=0,j=0,val=0;
+	printf("the number\n");
+	scanf("%d",&i);  //链表的长度 
+	for(j=0;j<i;j++){
+		scanf("%d",&val);
+		pNode pNew=(pNode)malloc(sizeof(Node));
+		if(NULL==pNew){   //判空 
+		    printf("failed\n");
+		    exit(-1);
+	    }
+		pNew->data=val;
+		pTail->pNext=pNew;
+		pTail=pNew;
+		pTail->pNext=NULL; 
+	}
+	return pHead;
+}
+bool is_empty(pNode pHead){
+	if(NULL==pHead->pNext){
+		return true;
+	}
+	return false;
+}
+void print(pNode pHead){
+	pNode p=pHead->pNext;
+	while(p){
+			printf("%d ",p->data);
+			p=p->pNext; 
+	}
+	printf("\n");
+}
+int LengthList(pNode pHead){
+	int len=0;
+	pNode p=pHead->pNext;
+	while(p){
+		len++;
+		p=p->pNext;
+	}
+	return len;
+}
+void sort_list(pNode pHead){
+	int i=0,j=0,t=0;
+	pNode p=NULL,q=NULL;
+	int len=LengthList(pHead);
+	for(i=0,p=pHead->pNext;i<len-1;i++,p=p->pNext){
+		for(j=i+1,q=p->pNext;j<len;j++,q=q->pNext){
+		    if(p->data>q->data){  //a[j]>a[j+1]
+		    	t=p->data;                   //t=a[j]
+			    p->data=q->data;     //a[j]=a[j+1
+			    q->data=t;                    //a[j+1]=t
+		    }
+		}
+	}
+}
+int main(){
+	pNode pHead=NULL;  //链表头指针
+	pHead=creat_node(pHead);
+	is_empty(pHead);  //判空 
+	if(is_empty(pHead)){
+		printf("lose\n");
+	}else{
+		printf("success\n");
+	}
+	int len=LengthList(pHead);
+	print(pHead) ;  //打印链表 
+	printf("the list length is %d\n",len);  //打印链表长度
+	sort_list(pHead); 
+	print(pHead) ; 
+	return 0;
+}
+====================================================
